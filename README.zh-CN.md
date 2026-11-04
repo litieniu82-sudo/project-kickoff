@@ -23,15 +23,12 @@ project-kickoff/
 ├── references/
 │   ├── delegation.md
 │   └── project-records.md
-├── docs/
-│   └── translation-review.md
 ├── README.md
 ├── README.zh-CN.md
-├── LICENSE
 └── .gitignore
 ```
 
-`SKILL.md` 是执行入口，`references` 提供按需读取的委派规则和项目记录模板。使用或迁移时保留整个 Skill 目录及相对路径。README 与翻译对照记录供读者查阅，不属于执行指令。
+`SKILL.md` 是执行入口，`references` 提供按需读取的委派规则和项目记录模板。使用或迁移时保留整个 Skill 目录及相对路径。README 提供使用说明。
 
 ## 获取与安装
 
@@ -63,11 +60,3 @@ $project-kickoff
 ## 运行要求
 
 客户端需要支持读取 `SKILL.md` 及其相对引用文件。实际并行工作需要客户端提供子 agent 工具；工具不可用时，由主 agent 顺序承担所需职责。Git 仅在任务选用该版本管理方式时需要。
-
-## 翻译对照
-
-[中英文对照审校记录](docs/translation-review.md) 记录了中文基线、语义核对范围和语言说明。
-
-## 许可证
-
-本项目使用 [MIT License](LICENSE)，欢迎在该许可证下使用、修改和分享。

@@ -1,7 +1,6 @@
 ---
 name: project-kickoff
 description: Start a new project or multi-step deliverable in a new chat when the work needs ongoing iteration. Establish requirements and project records, tailor a subagent team to the task, discover useful skills, plugins, and tools, choose version management, and coordinate execution, integration, and acceptance. Use for requests to start a project from scratch or organize an agent team; handle simple Q&A and small, narrowly scoped edits directly.
-license: MIT
 metadata:
   version: "2.1.0-draft"
 ---

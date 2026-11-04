@@ -23,15 +23,12 @@ project-kickoff/
 ├── references/
 │   ├── delegation.md
 │   └── project-records.md
-├── docs/
-│   └── translation-review.md
 ├── README.md
 ├── README.zh-CN.md
-├── LICENSE
 └── .gitignore
 ```
 
-`SKILL.md` is the execution entry point. `references` contains delegation rules and project record templates to read as needed. Preserve the complete skill directory and relative paths when using or moving it. The READMEs and translation review are reader documentation, outside the execution instructions.
+`SKILL.md` is the execution entry point. `references` contains delegation rules and project record templates to read as needed. Preserve the complete skill directory and relative paths when using or moving it. The READMEs provide usage documentation.
 
 ## Get and install
 
@@ -63,11 +60,3 @@ The skill also supports non-development tasks. For a paper, assign literature ve
 ## Runtime requirements
 
 The client must support reading `SKILL.md` and its relative references. Actual parallel work requires subagent tools; otherwise, the primary agent performs the needed responsibilities sequentially. Git is required only when selected for the task's version management.
-
-## Translation review
-
-See the [Chinese-to-English comparison record](docs/translation-review.md) for the source baseline, semantic review coverage, and language clarification.
-
-## License
-
-This project uses the [MIT License](LICENSE). You are welcome to use, modify, and share it under that license.
