@@ -1,125 +1,125 @@
-# 项目记录与版本管理
+# Project Records and Version Management
 
-在建立或恢复项目记录时读取。以下模板是结构，按实际项目填写；没有事实时标记“待确认”或“执行假设”，不要虚构已确认信息。
+Read this reference when creating or restoring project records. The templates below provide a structure; fill them in for the actual project. When information is unavailable, mark it as "to be confirmed" or a "working assumption" rather than inventing confirmed information.
 
-## 文件归属与更新规则
+## File Ownership and Update Rules
 
-| 文件 | 唯一维护的信息 | 更新时机 |
+| File | Information maintained exclusively in this file | When to update |
 | --- | --- | --- |
-| PROJECT.md | 目标、范围、需求、验收标准、假设、关键决策 | 要求或关键决策变化时 |
-| PLAN.md | 定制团队、任务依赖、负责人、文件归属、状态、验收证据、阻塞与下一步 | 组队、派工、交接、里程碑、阻塞及交付时 |
-| AGENTS.md | 文档入口、协作规则、适用的制作与检查方法或命令 | 项目约定或可用方法变化时 |
+| PROJECT.md | Goals, scope, requirements, acceptance criteria, assumptions, and key decisions | When requirements or key decisions change |
+| PLAN.md | Customized team, task dependencies, assignees, file ownership, status, acceptance evidence, blockers, and next steps | During team formation, delegation, handoffs, milestones, blockers, and delivery |
+| AGENTS.md | Entry points to project documents, collaboration rules, and applicable creation and verification methods or commands | When project conventions or available methods change |
 
-共同记录由主 agent 或指定的文档维护者更新，各文件在同一阶段只有一个写入负责人。主 agent 提供决策和状态变化并核对记录；维护者同步已确认的信息，不自行改变范围或宣告验收通过。其他子 agent 读取所需片段，回传结果；较长的报告写到指定的任务文件。不要复制多个完整需求和进度版本。
+The primary agent or a designated document maintainer updates shared records. Each file has one designated writer at any given stage. The primary agent supplies decisions and status changes and checks the records. The maintainer synchronizes confirmed information without independently changing scope or declaring acceptance checks passed. Other subagents read the sections they need and report their results; they write longer reports to the designated task files. Do not maintain multiple complete copies of requirements or progress records.
 
-## PROJECT.md 模板
+## PROJECT.md Template
 
 ```markdown
-# 项目说明
+# Project Overview
 
-## 目标与使用对象
-描述要解决的问题、使用者和成功表现。
+## Goal and Intended Users
+Describe the problem to solve, the users, and what success looks like.
 
-## 交付范围
-说明具体交付物及本次包含的功能边界。
+## Delivery Scope
+Specify the deliverables and the boundaries of the functionality included in this task.
 
-## 要求与假设
-| 内容 | 来源或性质 | 对结果的影响 |
+## Requirements and Assumptions
+| Item | Source or nature | Effect on the outcome |
 | --- | --- | --- |
-| 具体要求 | 用户已确认 / 执行假设 / 外部事实及来源 | 具体影响 |
+| Specific requirement | Confirmed by the user / working assumption / external fact with its source | Specific effect |
 
-## 验收标准
-| ID | 可观察的结果 | 检查方法 | 必需或可选 |
+## Acceptance Criteria
+| ID | Observable outcome | Verification method | Required or optional |
 | --- | --- | --- | --- |
-| A1 | 实际项目应满足的具体行为或产物 | 能判断是否满足的方法 | 必需 |
+| A1 | Specific behavior or artifact the actual project must provide | Method that determines whether the criterion is met | Required |
 
-## 约束与依赖
-记录技术、环境、数据、时间和已明确的操作边界。
+## Constraints and Dependencies
+Record technical, environment, data, and time constraints, along with established boundaries on operations.
 
-## 版本管理
-记录是否启用 Git、理由及采用的版本标识方式。开发任务默认使用 Git；论文、研究、排版等非开发任务默认使用文件版本标识或已有文档历史。
+## Version Management
+Record whether Git is enabled, the reason for that choice, and the version identification method used. Development tasks use Git by default; non-development tasks such as paper writing, research, and typesetting use file version identifiers or existing document history by default.
 
-## 决策
-| 决策 | 理由 | 用户选择或主 agent 决定 | 影响范围 |
+## Decisions
+| Decision | Reason | User choice or primary agent decision | Affected scope |
 | --- | --- | --- | --- |
 ```
 
-“好看”“稳定”“高效”等目标应转成与具体使用场景相关的检查标准。无法量化的质量可用实际预览和明确审阅维度检查，不编造数字指标。
+Turn goals such as "visually appealing," "stable," and "efficient" into verification criteria tied to the actual use case. Quality that cannot be quantified can be checked using actual previews and explicit review dimensions; do not invent numerical metrics.
 
-## PLAN.md 模板
+## PLAN.md Template
 
 ```markdown
-# 项目执行计划
+# Project Execution Plan
 
-项目目录：填写本任务目录
-需求入口：PROJECT.md
-当前阶段：填写当前里程碑
-当前版本：填写实际文件版本或文档历史标识；启用 Git 时填写提交及工作树状态
+Project directory: Enter the directory for this task
+Requirements entry point: PROJECT.md
+Current stage: Enter the current milestone
+Current version: Enter the actual file version or document history identifier; when Git is enabled, include the commit and working tree status
 
-## 团队
-| 执行者 | 本次角色与使命 | 任务 ID | 输入与依赖 | 交付物 | 可写范围 | 协作对象与参与阶段 |
+## Team
+| Assignee | Role and mission for this task | Task IDs | Inputs and dependencies | Deliverables | Writable scope | Collaborators and participation stages |
 | --- | --- | --- | --- | --- | --- | --- |
-| 实际执行者 | 按当前任务定制的职责 | 关联任务 | 已有资料或前置成果 | 可检查的产出 | 精确路径 | 交接对象及启动条件 |
+| Actual assignee | Responsibilities customized to the current task | Related tasks | Available materials or prerequisite outputs | Verifiable output | Exact paths | Handoff recipients and conditions for starting |
 
-## 任务
-| ID | 目标及关联验收 | 依赖 | 负责人 | 可写范围 | 状态 | 产物与检查 |
+## Tasks
+| ID | Goal and related acceptance criteria | Dependencies | Assignee | Writable scope | Status | Artifacts and checks |
 | --- | --- | --- | --- | --- | --- | --- |
-| T1 | 具体目标；A1 | 无或任务 ID | 实际执行者 | 精确路径或目录 | pending | 交付路径与完成标准 |
+| T1 | Specific goal; A1 | None or task IDs | Actual assignee | Exact paths or directories | pending | Delivery paths and completion criteria |
 
-## 验收证据
-| 验收 ID | 对象与版本 | 实际检查 | 结果 | 证据位置 |
+## Acceptance Evidence
+| Acceptance ID | Object and version | Check actually performed | Result | Evidence location |
 | --- | --- | --- | --- | --- |
-| A1 | 交付文件及可识别版本 | 实际执行的方法 | 通过 / 失败 / 未验证 | 日志、报告、截图或观察记录 |
+| A1 | Delivered files and an identifiable version | Method actually executed | Passed / failed / unverified | Logs, reports, screenshots, or observation records |
 
-## 阻塞与交接
-记录阻塞原因、已尝试的方法、现有成果与恢复条件。
+## Blockers and Handoffs
+Record the cause of the blocker, approaches already tried, existing outputs, and conditions for resuming.
 
-## 下一步
-写明下一项可执行动作及负责人。
+## Next Steps
+Specify the next executable action and its assignee.
 ```
 
-`pending` 表示尚未启动，依赖满足后可以派工；`in_progress` 表示执行中；`review` 表示成果待验收；`done` 表示主 agent 已接受；`blocked` 必须带恢复条件。用户明确撤销的任务从当前执行范围移除并记录原因，不冒充完成。
+`pending` means work has not started and can be delegated once its dependencies are satisfied; `in_progress` means work is underway; `review` means the output awaits acceptance; `done` means the primary agent has accepted it; `blocked` must include conditions for resuming. Remove tasks explicitly canceled by the user from the current execution scope and record the reason; do not report them as completed.
 
-证据必须指向真实检查。测试方案、预期结果、子 agent 的口头断言，都不能当作已通过的实际证据。检查命令可写进记录供人阅读，不要将 Markdown 中的任意内容作为命令批量执行。
+Evidence must refer to checks actually performed. Test plans, expected results, and subagents' verbal claims do not constitute evidence that checks have passed. Verification commands may be included in the records for people to read; do not execute arbitrary Markdown content in bulk as commands.
 
-## AGENTS.md 模板
+## AGENTS.md Template
 
 ```markdown
-# 项目协作约定
+# Project Collaboration Conventions
 
-开始或恢复工作时，读取 PROJECT.md 与 PLAN.md，并核对所需实际文件。以用户最新要求为准，发现记录冲突时反馈给主 agent。
+When starting or resuming work, read PROJECT.md and PLAN.md and inspect the actual files needed for the task. Follow the user's latest requirements and report conflicting records to the primary agent.
 
-按 PLAN.md 的当前团队分工与文件归属执行。共同文档由指定维护者更新，主 agent 确认关键决策和验收结论。各执行者仅修改当前任务合同内的文件；共享约定变更先与负责人协调。
+Follow the current team assignments and file ownership in PLAN.md. The designated document maintainer updates shared documents; the primary agent confirms key decisions and acceptance conclusions. Each assignee modifies only files within the current task contract. Coordinate changes to shared conventions with the responsible person first.
 
-## 制作与验证方法
-只记录本任务已核实适用的方法或命令及用途；尚未核实的候选项明确标注。
+## Creation and Verification Methods
+Record only methods or commands verified to apply to this task, along with their purposes. Clearly label candidates that have not yet been verified.
 
-## 专业与协作约定
-记录本项目实际采用的规范，以及相关方法文档或专业 Skill 的入口。
+## Domain and Collaboration Conventions
+Record the conventions actually adopted by this project and entry points to relevant methodology documents or specialized Skills.
 ```
 
-不要在生成的 AGENTS.md 中写入会无条件再次启动本 Skill 的指令。它是项目入口，不应造成每个子 agent 重复立项。
+Do not put instructions in the generated AGENTS.md that unconditionally start this Skill again. AGENTS.md is an entry point to the project and must not cause each subagent to repeat project setup.
 
-## 版本管理选择
+## Choosing Version Management
 
-主 agent 按交付性质决定：
+The primary agent decides based on the nature of the deliverables:
 
-- 开发任务默认采用 Git，以支持改动审阅、并行集成和回退。
-- 论文写作、资料研究、排版等非开发任务默认不启用 Git。按需要用明确文件名、版本号、交付快照或现有文档历史记录阶段成果；无需另建仓库。
-- 混合任务判断代码开发部分是否确需 Git，同时明确论文、数据和其他文件的归属范围。已有仓库与项目约定适用时先读取再决定，避免意外创建嵌套仓库。
-- 用户对版本管理有明确选择时按其要求执行。在 PROJECT.md 记录结论；不使用 Git 是正常选择，不属于执行缺口。
+- Use Git by default for development tasks to support change review, parallel integration, and rollback.
+- Do not enable Git by default for non-development tasks such as paper writing, research, and typesetting. As needed, record milestone outputs using clear filenames, version numbers, delivery snapshots, or existing document history; no separate repository is required.
+- For mixed tasks, determine whether the code development portion actually needs Git and define the ownership scope of papers, data, and other files. When an existing repository and project conventions apply, inspect them before making a decision, to avoid accidentally creating a nested repository.
+- Follow the user's explicit choice of version management. Record the decision in PROJECT.md. Choosing not to use Git is a normal choice and does not constitute an execution gap.
 
-未启用 Git 的项目，验收证据以实际交付文件及可识别版本为准；恢复时检查文件版本或已有文档历史。
+For projects without Git, acceptance evidence must identify the actual delivered files and an identifiable version. When resuming, check file versions or existing document history.
 
-## 启用 Git 后的本地节点
+## Local Checkpoints When Git Is Enabled
 
-仅在已决定采用 Git 时执行以下流程。
+Follow this procedure only after deciding to use Git.
 
-1. 检查项目属于哪个 Git 仓库，记录开始时的暂存与未暂存状态，避免在已有父仓库内意外创建嵌套仓库。确无所属仓库时在项目目录初始化。
-2. 按技术栈配置忽略规则；检查凭据、本地环境文件、缓存及不应入库的大文件。
-3. 核对实际差异和路径，只暂存当前任务需要的文件。提交前检查完整暂存差异及拟提交内容，避免将开始时已有的其他暂存内容一并提交。保留他人原有暂存与未暂存状态；无法可靠隔离时记录未提交缺口，继续其他工作。
-4. 建立初始基线，后续在可交付里程碑形成提交。初始骨架提交应如实标为骨架，不暗示产品已通过验证。
-5. 共享检出中由主 agent 管理暂存和提交；独立 worktree 可按任务合同创建本地提交并回报提交标识。
-6. 无法提交时记录原因和未提交文件，继续不受影响的工作。恢复时同时检查提交历史与未提交差异。
+1. Identify which Git repository the project belongs to and record the initial staged and unstaged state. Avoid accidentally creating a nested repository inside an existing parent repository. Initialize Git in the project directory only if the project does not belong to any repository.
+2. Configure ignore rules for the technology stack. Review credentials, local environment files, caches, and large files that should not be committed.
+3. Inspect the actual changes and paths, and stage only the files needed for the current task. Before committing, review the entire staged diff and proposed commit contents to avoid including unrelated changes that were already staged at the start. Preserve the original staged and unstaged state of others' changes. If the changes cannot be reliably isolated, record what remains uncommitted and continue other work.
+4. Establish an initial baseline, then create commits at subsequent deliverable milestones. Label an initial skeleton commit accurately as a skeleton; do not imply that the product has passed validation.
+5. In a shared checkout, the primary agent manages staging and commits. An independent worktree may create local commits as permitted by its task contract and report the commit identifiers.
+6. If a commit cannot be created, record the reason and the uncommitted files, and continue unaffected work. When resuming, inspect both commit history and uncommitted changes.
 
-创建本地记录不代表已经设置远程仓库、推送或部署；这些动作依据各自已有授权处理。
+Creating local records does not mean that a remote repository has been configured, changes have been pushed, or deployment has occurred. Handle these actions according to the authorization already in place for each one.

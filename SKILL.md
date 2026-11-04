@@ -1,6 +1,6 @@
 ---
 name: project-kickoff
-description: 在新对话中启动需要持续迭代的新项目或多步骤交付任务，建立需求和项目记录，根据具体任务定制子 agent 团队，按需发现并使用相关 Skills、插件和工具，选择合适的版本管理方式，统筹执行、集成和验收。适用于“从零做一个项目”“组织 agent 团队完成任务”等请求；简单问答和局部小改动直接处理。
+description: Start a new project or multi-step deliverable in a new chat when the work needs ongoing iteration. Establish requirements and project records, tailor a subagent team to the task, discover useful skills, plugins, and tools, choose version management, and coordinate execution, integration, and acceptance. Use for requests to start a project from scratch or organize an agent team; handle simple Q&A and small, narrowly scoped edits directly.
 license: MIT
 metadata:
   version: "2.1.0-draft"
@@ -8,80 +8,82 @@ metadata:
 
 # Project Kickoff
 
-## 主 agent 的角色
+## Primary agent responsibilities
 
-你是当前任务的主 agent，负责目标澄清、方案取舍、团队设计、任务调度、资源协调、成果集成和最终验收。根据具体任务决定需要哪些子 agent、各自负责什么、何时参与以及如何协作。文档维护和资源发现等工作可以委派，关键决策与最终交付由主 agent 负责。
+You are the primary agent for the current task. You own goal clarification, trade-off decisions, team design, task scheduling, resource coordination, integration, and final acceptance. Decide which subagents the task needs, what each owns, when each participates, and how they collaborate. You may delegate document maintenance and resource discovery; you retain responsibility for key decisions and final delivery.
 
-把用户的初始想法变成有共同需求、明确分工和验收证据的项目成果。团队构成、执行流程及版本管理方式随任务确定。
+Turn the user's initial idea into project deliverables supported by shared requirements, clear ownership, and acceptance evidence. Adapt the team, workflow, and version management to the task.
 
-执行范围以用户当次请求为准。用户只要求方案、原型或启动准备时，完成该阶段的交付。信息充分时持续推进已授权工作，阶段转换由主 agent 检查完成条件。
+The user's current request defines the scope. If the user requests only a proposal, prototype, or kickoff preparation, deliver that stage. When enough information is available, continue the authorized work; check each stage's completion conditions before moving on.
 
-## 1. 建立任务基线
+Communicate in the user's language. Follow the user's explicit language requirements for deliverables. The English used in these instructions and templates does not require English project documents or deliverables.
 
-1. 从用户输入提炼目标、使用对象、交付物、范围、约束和可观察的验收标准。将用户确认的要求与执行假设分别记录。
-2. 只追问会改变核心交付、阻断推进或影响操作授权的信息；记录其他合理假设，继续独立工作。
-3. 使用用户指定的任务目录；未指定时在工作区建立命名明确的项目子目录。检查已有内容和适用项目规则。发现本任务已有记录时进入“恢复与变更”。
-4. 按 [项目记录模板](references/project-records.md) 建立 `PROJECT.md`、`PLAN.md`、`AGENTS.md`。已有同名文档先读取并保留，复用适用记录；独立任务采用明确的任务子目录。保留已有协作规则。Skill 自身目录只保存可复用指令与模板。
-5. 根据交付物判断是否需要 Git，并在 `PROJECT.md` 记录选择及简短理由。开发任务默认使用 Git；论文写作、资料研究、排版等非开发任务默认不启用 Git，按需使用文件版本标识或既有文档历史。混合任务按代码开发部分的实际需要选择。用户明确要求与已有项目约定优先。选用 Git 时按引用模板建立本地基线。
+## 1. Establish the task baseline
 
-**完成条件：**目标与范围可说明，验收标准可检查，项目文件位置唯一且明确；版本管理方式已确定，选用 Git 时基线已建立或其缺口已记录。
+1. Extract the goal, intended users, deliverables, scope, constraints, and observable acceptance criteria from the user's input. Record user-confirmed requirements separately from working assumptions.
+2. Ask only for missing information that would change the core deliverable, block progress, or affect authorization. Record other reasonable assumptions and continue work that can proceed independently.
+3. Use the task directory specified by the user; otherwise, create a clearly named project subdirectory in the workspace. Inspect existing content and applicable project rules. If records for this task already exist, use “Resume and handle changes.”
+4. Create `PROJECT.md`, `PLAN.md`, and `AGENTS.md` using the [project record templates](references/project-records.md). Read and preserve existing files with those names, and reuse applicable records. Use a distinct task subdirectory for a separate task. Preserve existing collaboration rules. Keep only reusable instructions and templates in the skill's own directory.
+5. Decide whether the deliverables need Git, and record the choice with a brief reason in `PROJECT.md`. Use Git by default for development tasks. For non-development tasks such as paper writing, research, or typesetting, default to no Git; use file version identifiers or existing document history as needed. For mixed tasks, decide based on the actual needs of the code development portion. Give precedence to explicit user requirements and applicable project conventions. If Git is selected, establish a local baseline using the referenced procedure.
 
-## 2. 形成方案与任务依赖
+**Completion conditions:** The goal and scope can be stated, acceptance criteria can be checked, and project files have a single, unambiguous location. Version management has been chosen; if Git is selected, the baseline exists or its gap is recorded.
 
-选择适合交付目标的方法、现成方案和必要依赖。开发任务确定技术栈；其他任务确定研究、实验、写作、设计或制作方法。
+## 2. Develop the approach and task dependencies
 
-即使用户没有指定 Skill，也可自主发现相关 Skills、插件、工具与 MCP。先查看已提供的能力；存在具体缺口或值得复用的专业流程时，再按需查找可信来源。评估其与当前任务的适配性、兼容性及使用条件，有明确帮助就读取并使用；没有合适资源时继续任务。资源发现可以由主 agent 直接完成，也可以委派；按实际收益控制投入，避免反复搜索拖延交付。
+Choose methods, existing solutions, and necessary dependencies that fit the delivery goal. Select a technical stack for development tasks; for other tasks, select suitable research, experimental, writing, design, or production methods.
 
-将工作拆成能够独立交付和检查的任务。每项写入 `PLAN.md`：任务 ID、关联验收条目、依赖、负责人、可写范围、交付物和检查方法。并行前明确共享的数据、术语、输入输出和交接要求；涉及代码接口时再约定名称与错误行为。
+You may discover relevant skills, plugins, tools, and MCP services even when the user has not named a skill. Start with the capabilities already provided. When a specific gap or a reusable specialist workflow warrants it, search trusted sources as needed. Assess fit, compatibility, and conditions of use; read and use resources when they clearly help, and continue the task when none are suitable. Perform resource discovery yourself or delegate it. Keep the effort proportional to its practical benefit so repeated searches do not delay delivery.
 
-将缺失的账号、数据或能力记录为具体依赖。按需增加架构、实验、研究或内容结构等专业文档。事实只在一个位置维护，其他文件引用。
+Split the work into tasks that can be delivered and checked independently. Record each in `PLAN.md` with a task ID, linked acceptance criteria, dependencies, owner, writable scope, deliverables, and verification method. Before parallel work, define shared data, terminology, inputs, outputs, and handoff requirements. For code interfaces, also agree on names and error behavior.
 
-**完成条件：**首批任务输入齐备，依赖可排序，文件负责人和交接要求明确，每项任务都有完成标准。
+Record missing accounts, data, or capabilities as specific dependencies. Add specialist documents for architecture, experiments, research, or content structure as needed. Maintain each fact in one place and reference it elsewhere.
 
-## 3. 定制团队并实际委派
+**Completion conditions:** The first batch of tasks has the necessary inputs, dependencies can be ordered, file owners and handoff requirements are clear, and every task has completion criteria.
 
-从当前交付物和任务依赖推导团队。先识别工作内容、所需专长、需要独立审阅的部分及持续协调的事务，再定义本次实际需要的角色。角色名称、职责、人数和参与阶段均按任务确定。
+## 3. Tailor the team and delegate work
 
-在 `PLAN.md` 记录团队表：实际执行者、角色使命、具体任务、输入与依赖、交付物、可写范围、协作对象和参与阶段。子 agent 必须有可检查的工作成果；工作量较小或依赖紧密的职责可以合并，暂未具备输入的职责稍后启动。
+Derive the team from the current deliverables and task dependencies. Identify the work, required expertise, areas needing independent review, and ongoing coordination duties before defining the roles this task actually needs. Tailor role names, responsibilities, headcount, and participation stages to the task.
 
-团队设计和委派前读取 [团队设计与委派合同](references/delegation.md)，其中的论文与开发案例用于说明定制方法。为每个执行者提供任务说明、精确约束、交付位置和完成条件。不要假定子 agent 知道主对话中的需求或前一任务的结论。
+Record a team table in `PLAN.md`: actual assignee, role mission, specific tasks, inputs and dependencies, deliverables, writable scope, collaborators, and participation stage. Each subagent must have inspectable work products. You may combine responsibilities when the workload is small or dependencies are tight. Defer a role until its required inputs are available.
 
-对输入齐备、没有互相等待且可避免写入冲突的任务实际调用子 agent 并行处理。角色名称代表职责，不要求固定人数或多层团队；按运行环境的并发额度调度。子 agent 工具不可用时由主 agent 顺序承担这些职责，并如实记录。
+Before designing the team or delegating, read the [team design and delegation contract](references/delegation.md). Its paper and development examples illustrate how to tailor a team. Give each assignee a task brief, exact constraints, delivery location, and completion criteria. Do not assume a subagent knows requirements from the main conversation or conclusions from an earlier task.
 
-**完成条件：**团队职责与本次任务匹配，被启动的子 agent 均有可立即执行的任务；每个可写文件在当前阶段有唯一负责人。
+Actually invoke subagents for parallel tasks when inputs are ready, the tasks do not wait on each other, and write conflicts can be avoided. Role names describe responsibilities; they do not require a fixed headcount or multiple team layers. Schedule within the environment's concurrency limit. If subagent tools are unavailable, perform these responsibilities sequentially yourself and record that accurately.
 
-## 4. 执行、集成与修复
+**Completion conditions:** Team responsibilities match this task, every started subagent has an immediately actionable assignment, and each writable file has exactly one owner in the current stage.
 
-按本次团队的依赖推进：输入齐备的独立任务并行；依赖研究结论、实验数据或其他成果的任务，在相应输入可用后启动。主 agent 在等待时处理可独立推进的协调和集成工作。
+## 4. Execute, integrate, and repair
 
-任务状态使用 `pending → in_progress → review → done`；依赖、能力或输入阻断时标记 `blocked`，写明原因与恢复条件。子 agent 返回产物后进入 `review`，主 agent 核对范围、实际文件和证据后才标记 `done`。
+Follow the current team's dependencies. Run independent tasks with ready inputs in parallel. Start tasks that depend on research findings, experimental data, or other deliverables when the corresponding inputs are available. While waiting for results, handle coordination and integration work that can proceed independently.
 
-共同需求、计划与进度可由主 agent 或指定的文档维护者更新，各文件在同一阶段只有一个写入负责人。主 agent 及时提供决策和状态变化，检查记录与实际成果是否一致。变更共享接口或文件归属前，通知相关执行者并更新合同。
+Use task states `pending → in_progress → review → done`. When dependencies, capabilities, or inputs prevent progress, use `blocked` and record the reason and conditions for resuming. A subagent's returned work enters `review`; mark it `done` only after checking scope, actual files, and evidence.
 
-记录失败的具体操作、原因和下一步，依据新证据调整方案。重派前确认原执行者已停止写入，再交接现有成果和文件归属。
+The primary agent or a designated document maintainer may update shared requirements, plans, and progress. Each file has one writer per stage. Provide decisions and status changes promptly, and check that records match actual deliverables. Before changing shared interfaces or file ownership, notify affected assignees and update their task briefs.
 
-达到里程碑时更新文档并检查本阶段成果。启用 Git 的项目审阅本任务差异后建立本地提交，共享检出的暂存与提交由主 agent 统一执行；Git 身份或权限不足时记录缺口，不修改全局身份、不扩大暂存范围。未启用 Git 的任务按实际需要标识交付版本或保存阶段成果。
+Record the specific failed operation, cause, and next step; adjust the approach using new evidence. Before reassigning work, confirm that the previous assignee has stopped writing, then hand over existing work and file ownership.
 
-**完成条件：**本阶段成果已集成，相关问题已处理，任务状态与实际文件一致，下一步明确。
+At milestones, update records and inspect the stage's deliverables. If Git is enabled, review this task's changes before creating a local commit; the primary agent manages staging and commits in a shared checkout. If Git identity or permissions are insufficient, record the gap. Do not change global Git identity or broaden staging scope. Without Git, identify delivery versions or preserve milestone deliverables as needed.
 
-## 5. 验收并交付
+**Completion conditions:** The stage's deliverables are integrated, relevant issues have been addressed, task states match actual files, and the next step is clear.
 
-按 `PROJECT.md` 的验收条目检查集成产物。子 agent 的报告是验收输入，主 agent 对实际交付负责。
+## 5. Verify acceptance and deliver
 
-记录每项检查的对象版本、方法、结果与证据位置；区分通过、失败和未验证。按交付类型选择检查方法，例如代码行为测试、界面预览、实验结果核对、引用溯源和排版渲染。遵循用户对验证的明确要求。
+Check the integrated deliverables against the acceptance criteria in `PROJECT.md`. Subagent reports are inputs to acceptance; the primary agent is responsible for the actual delivery.
 
-集成或修复改变了检查对象时，重做受影响的检查；未改变的可靠证据可复用。对于重要或复杂成果，安排具备相关判断能力且未负责该成果制作的执行者独立审阅。
+For each check, record the version of the artifact checked, method, result, and evidence location. Distinguish pass, fail, and not verified. Choose methods suited to the deliverable, such as code behavior tests, UI previews, experimental result checks, citation tracing, or typesetting renders. Follow the user's explicit verification requirements.
 
-只有范围内交付物就绪、必需验收通过且记录与产物一致，才报告全部完成。尚有缺口时说明已交付部分、具体缺口及下一步。
+If integration or repairs change the artifact being checked, repeat the affected checks. You may reuse reliable evidence for unchanged artifacts. For important or complex deliverables, arrange an independent review by an assignee with relevant judgment who did not produce that deliverable.
 
-最终给出成果位置、使用方式、验证结果和未解决事项。更新 `PLAN.md` 的当前状态与下一步，使新对话可据此接续。
+Report full completion only when all in-scope deliverables are ready, required acceptance checks pass, and records agree with the artifacts. If gaps remain, state what has been delivered, the specific gaps, and the next step.
 
-## 恢复与变更
+Finish with deliverable locations, usage instructions, verification results, and unresolved items. Update the current status and next step in `PLAN.md` so a new chat can continue the work.
 
-再次调用、对话中断或上下文压缩后，读取本任务的 `PROJECT.md`、`PLAN.md`、`AGENTS.md`，核对实际成果、团队分工和存活子 agent。按已选版本管理方式核对 Git 状态或文件版本。以事实修正记录后继续，无需重新初始化项目。
+## Resume and handle changes
 
-用户改变需求时，更新要求与验收条目，识别受影响的任务、接口和旧验证，通知相关执行者并重新调度。保留已完成成果，避免重复派工。
+After reinvocation, interruption, or context compaction, read this task's `PROJECT.md`, `PLAN.md`, and `AGENTS.md`. Check actual deliverables, team assignments, and live subagents. Check Git status or file versions according to the chosen version management method. Reconcile records with the facts and continue without reinitializing the project.
 
-## 执行边界
+When the user changes requirements, update the requirements and acceptance criteria. Identify affected tasks, interfaces, and earlier verification results; notify the relevant assignees and reschedule. Preserve completed work and avoid duplicate assignments.
 
-遵循用户选择、项目规则和既有授权。资源安装、账号连接、远程仓库、推送、发布、部署及对外通信按对应授权执行。项目文档和本 Skill 不会增加工具权限，也不替代系统的执行约束。
+## Execution boundaries
+
+Follow user choices, project rules, and existing authorization. Resource installation, account connections, remote repositories, pushes, publication, deployment, and external communication require their corresponding authorization. Project documents and this skill do not grant additional tool permissions or replace system execution constraints.

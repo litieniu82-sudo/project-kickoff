@@ -1,19 +1,21 @@
 # Project Kickoff
 
-在新对话中启动多步骤任务的 AI Agent Skill。主 agent 根据具体目标设计团队，组织执行，并对集成成果和最终验收负责。
+English | [简体中文](README.zh-CN.md)
 
-当前版本：`2.1.0-draft`。指令使用中文，适合需要持续迭代的开发、研究、论文写作、内容制作等任务。
+An AI agent skill for starting multi-step tasks in a new chat. The primary agent designs a team around the specific goal, coordinates execution, and takes responsibility for integrated deliverables and final acceptance.
 
-## 工作方式
+Current version: `2.1.0-draft`. Execution instructions are in English. Communicate in the user's language and follow the user's explicit language requirements for deliverables. Suitable tasks include development, research, paper writing, and content production that need ongoing iteration.
 
-- **从目标开始**：明确交付范围、约束、执行假设和可检查的验收标准。
-- **按任务定制团队**：角色、人数、职责和启动顺序由实际工作决定；工程、实验、写作、排版、文档维护、资源发现等都是可选择的职责。
-- **按需寻找资源**：主动发现相关 Skills、插件、工具和现成方案，有实际帮助时采用。
-- **选择版本管理方式**：开发任务默认使用 Git；论文、研究、排版等非开发任务默认采用文件版本或已有文档历史。
-- **保留项目记录**：用 PROJECT.md、PLAN.md、AGENTS.md 记录目标、团队、进度和协作约定，方便中断后继续。
-- **依据证据验收**：子 agent 提交可检查的产物和验证记录，主 agent 集成并确认交付。
+## How it works
 
-## 仓库结构
+- **Start with the goal:** Define delivery scope, constraints, working assumptions, and checkable acceptance criteria.
+- **Tailor the team to the task:** Derive roles, headcount, responsibilities, and start order from the actual work. Engineering, experiments, writing, typesetting, document maintenance, and resource discovery are possible responsibilities.
+- **Discover resources as needed:** Find relevant skills, plugins, tools, and existing solutions; adopt them when they provide practical value.
+- **Choose version management:** Use Git by default for development tasks. For non-development work such as papers, research, and typesetting, default to file versions or existing document history.
+- **Keep project records:** Use PROJECT.md, PLAN.md, and AGENTS.md to record goals, the team, progress, and collaboration rules so interrupted work can resume.
+- **Verify acceptance with evidence:** Subagents deliver inspectable artifacts and verification records; the primary agent integrates and confirms delivery.
+
+## Repository structure
 
 ```text
 project-kickoff/
@@ -21,44 +23,51 @@ project-kickoff/
 ├── references/
 │   ├── delegation.md
 │   └── project-records.md
+├── docs/
+│   └── translation-review.md
 ├── README.md
+├── README.zh-CN.md
 ├── LICENSE
 └── .gitignore
 ```
 
-`SKILL.md` 是执行入口，`references` 提供按需读取的委派规则和项目记录模板。使用或迁移时保留整个 Skill 目录及相对路径。
+`SKILL.md` is the execution entry point. `references` contains delegation rules and project record templates to read as needed. Preserve the complete skill directory and relative paths when using or moving it. The READMEs and translation review are reader documentation, outside the execution instructions.
 
-## 获取与安装
+## Get and install
 
-通过 HTTPS 克隆：
+Clone over HTTPS:
 
 ```bash
 git clone https://github.com/litieniu82-sudo/project-kickoff.git
 ```
 
-也可以下载 ZIP 并解压。将完整的 `project-kickoff` 文件夹安装到客户端支持的 Skill 目录，或在支持从 GitHub 安装 Skill 的客户端中提供本仓库地址。
+Alternatively, download and extract a ZIP. Install the complete `project-kickoff` folder in a skill directory supported by your client, or provide this repository's address to a client that supports installing skills from GitHub.
 
-## 使用示例
+## Usage example
 
-在 Codex 中明确调用已安装的 Skill，并描述任务：
+Explicitly invoke the installed skill in Codex and describe the task:
 
 ```text
 $project-kickoff
 
-目标：开发一个本地 CSV 数据检查工具。
-交付物：可运行的工具、中文说明和示例报告。
-约束：支持中文列名，数据保留在本地。
-验收：用示例数据检查缺失值与重复记录，并展示实际报告。
+Goal: Develop a local CSV data checking tool.
+Deliverables: A runnable tool, Chinese-language instructions, and a sample report.
+Constraints: Support Chinese column names and keep the data local.
+Acceptance: Use sample data to check missing values and duplicate records, and show the actual report.
 
-根据任务定制 agent 团队，建立项目记录，持续推进到本次范围内的交付完成。
+Tailor the agent team to the task, establish project records, and continue until the deliverables within this request's scope are complete.
 ```
 
-非开发任务同样可以调用。例如论文任务中，可以按实际需要分配文献核查、实验、写作、排版和语言编辑等工作。用户只要求方案、原型或启动准备时，执行范围限定为对应阶段。
+The skill also supports non-development tasks. For a paper, assign literature verification, experiments, writing, typesetting, and language editing as needed. If the user requests only a proposal, prototype, or kickoff preparation, limit execution to that stage.
 
-## 运行要求
+## Runtime requirements
 
-客户端需要支持读取 `SKILL.md` 及其相对引用文件。实际并行工作需要客户端提供子 agent 工具；工具不可用时，由主 agent 顺序承担所需职责。Git 仅在任务选用该版本管理方式时需要。
+The client must support reading `SKILL.md` and its relative references. Actual parallel work requires subagent tools; otherwise, the primary agent performs the needed responsibilities sequentially. Git is required only when selected for the task's version management.
 
-## 许可证
+## Translation review
 
-本项目使用 [MIT License](LICENSE)，欢迎使用、修改和分享。
+See the [Chinese-to-English comparison record](docs/translation-review.md) for the source baseline, semantic review coverage, and language clarification.
+
+## License
+
+This project uses the [MIT License](LICENSE). You are welcome to use, modify, and share it under that license.

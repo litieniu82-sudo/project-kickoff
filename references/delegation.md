@@ -1,79 +1,79 @@
-# 团队设计与委派合同
+# Team Design and Delegation Contracts
 
-拆分项目和委派子 agent 时读取。每次委派对应一个可交付任务，不要把完整聊天记录当作任务说明。
+Read this reference when breaking down a project and delegating to subagents. Each delegation must correspond to a task with a deliverable; do not use the entire chat history as the task brief.
 
-## 从任务设计团队
+## Design the Team Around the Task
 
-1. 从交付物列出实际工作及关键依赖，识别需要不同专长或独立判断的部分。
-2. 将可以独立产出、值得单独委派的工作定义为角色。文档维护、资源发现、复核等持续职责也可单独安排；工作量较小时由主 agent 或其他执行者兼任。
-3. 为每个角色定义使命、具体任务、输入、交付物、可写范围、协作对象与参与阶段，并与 `PLAN.md` 的任务 ID 关联。
-4. 按实际并发额度安排启动批次。角色数量不等于同时运行的子 agent 数量；随着任务变化合并、拆分或结束职责。
+1. Starting from the deliverables, list the actual work and key dependencies. Identify the parts that require different expertise or independent judgment.
+2. Define roles for work that can produce an independent output and warrants separate delegation. Ongoing responsibilities such as document maintenance, resource discovery, and review may also be assigned separately; when the workload is small, the primary agent or another worker may take them on alongside other responsibilities.
+3. Define each role's mission, specific tasks, inputs, deliverables, writable scope, collaborators, and stages of participation. Link the role to task IDs in `PLAN.md`.
+4. Schedule launch batches within the actual concurrency limit. The number of roles is not the number of subagents running at the same time; combine, split, or end responsibilities as the task evolves.
 
-主 agent 保留目标取舍、团队调整、共享约定裁决、资源协调、集成和最终验收职责。角色应写明具体产出，例如“核对全部引用的出处并提交问题清单”，避免仅写“专家”或“顾问”。
+The primary agent retains responsibility for tradeoffs among goals, team adjustments, decisions on shared agreements, resource coordination, integration, and final acceptance. Define concrete outputs for each role, such as "check the sources of all references and submit a list of issues," rather than using only labels such as "expert" or "advisor."
 
-## 定制示例
+## Customization Examples
 
-以下展示两种可能的分工。使用时依据具体任务重新设计，角色和数量均可调整。
+The following are two possible divisions of work. Redesign the team for the actual task; both the roles and their number may change.
 
-| 任务情境 | 可考虑的分工与交付 |
+| Task context | Possible responsibilities and deliverables |
 | --- | --- |
-| 含实验的论文项目 | 写作：论证结构与正文；实验：实验方案、运行记录与结果；排版：模板适配、图表和可渲染稿件；语言编辑：表达、文风与术语一致性。根据真实任务决定是否增加引用核查、独立复核等职责。 |
-| 持续迭代的开发项目 | 实现：核心功能与运行入口；测试与迭代：验收用例、复现记录及改进建议；项目记录：同步 PROJECT、PLAN、AGENTS；资源发现：查找相关 Skills、插件和现成方案，回报适配结论。根据规模合并或细分职责。 |
+| A paper project involving experiments | Writing: argument structure and manuscript text; experiments: experimental design, run records, and results; typesetting: template adaptation, figures and tables, and a manuscript that can be rendered; language editing: expression, style, and terminology consistency. Decide whether to add citation checking, independent review, or other responsibilities based on the actual task. |
+| A development project with ongoing iteration | Implementation: core functionality and runnable entry point; testing and iteration: acceptance test cases, reproduction records, and improvement suggestions; project records: keep PROJECT, PLAN, and AGENTS in sync; resource discovery: find relevant Skills, plugins, and existing solutions, and report suitability conclusions. Combine or subdivide responsibilities according to project size. |
 
-论文正文依赖实验结果时，可先并行推进提纲和实验准备，待结果确认后完成结论。资源发现者应有明确问题和结束条件，输出可用候选及理由，或说明未找到合适资源；不承担无期限搜集。
+When the paper's main text depends on experimental results, the outline and experiment preparation can proceed in parallel first; complete the conclusions after the results are confirmed. Give the resource discovery worker a specific question and an end condition. The worker must return usable candidates and reasons, or report that no suitable resource was found; the assignment must not become an open-ended search.
 
-## 委派前检查
+## Before Delegating
 
-只有以下条件具备时才启动执行者：任务输入可用；交付物明确；与并行工作没有未解决的依赖或写入冲突；运行环境支持所需工具与并发。
+Start a worker only when all of the following are true: task inputs are available; deliverables are clear; there are no unresolved dependencies or write conflicts with parallel work; and the runtime supports the required tools and concurrency.
 
-检查方案可在制作成果前准备，依赖成品的验证安排在后续任务。研究结论或实验结果会决定后续方向时，先确认相应输入，再派受其影响的任务。
+The checking approach may be prepared before the deliverables are produced; schedule validation that depends on finished deliverables as later tasks. When research findings or experimental results determine the next direction, confirm those inputs before assigning tasks that depend on them.
 
-## 委派模板
-
-```text
-任务 ID 与角色：
-目标及其在项目中的位置：
-相关验收条目与不可更改的用户约束：
-工作目录与输入资料路径：
-输入版本或当前有效接口：
-交付物与保存位置：
-可写范围；其余文件只读：
-前置依赖、接口及交接对象：
-完成条件与实际检查方法：
-需回传的结果与证据：
-```
-
-将关键的精确值与约束写清楚，附上相应原始说明；不要要求子 agent 从整段聊天中猜测。资料较长时提供文件路径和相关小节，只交付当前任务所需上下文。
-
-## 文件与资源协作
-
-- 同一阶段每个可写文件只有一个负责人。多个角色需要修改的正文、共享入口或配置等，单独指定负责人；其他执行者提供修改请求。
-- 共同文档可交由专门的文档维护者更新。主 agent 回传决策、任务状态和已确认的验收结论；维护者同步记录并报告冲突或缺口。主 agent 需要亲自编辑同一文件时先完成写入权交接。
-- 修改共享约定前，由主 agent 确认变更，交指定维护者更新记录并通知受影响的执行者。任务说明随之更新，旧验证按影响范围重新检查。
-- 分离文件还不足以避免冲突：依赖安装、生成器、数据库迁移及共享服务也需要指定执行者或隔离环境。
-- 项目选用 Git 后，需要独立开发的大模块可使用已有或新建的合适 worktree。记录实际路径、基线与待集成提交；创建 worktree 不代表未提交内容已复制。
-- 使用 Git 的共享检出由主 agent 管理索引。执行者交付成果后，主 agent 统一审阅、集成和建立版本节点；未选用 Git 的任务按约定的文件版本交接。
-- 执行中发现越界需求，向主 agent 报告影响和建议；原文件负责人确认停止写入后再转交。
-
-## 汇报模板
+## Task Brief Template
 
 ```text
-任务 ID：
-状态：交付待验收 / 需补充输入 / 阻塞
-产物与实际修改文件：
-对应验收条目：
-检查对象版本、执行方法与结果：
-证据位置：
-未解决问题、影响与建议：
-交接信息或本地提交（如有）：
+Task ID and role:
+Objective and its place in the project:
+Relevant acceptance criteria and user constraints that must not be changed:
+Working directory and input material paths:
+Input version or currently applicable interface:
+Deliverables and save locations:
+Writable scope; all other files are read-only:
+Prerequisites, interfaces, and handoff recipients:
+Completion criteria and actual checking methods:
+Results and evidence to report back:
 ```
 
-较长报告写到主 agent 指定的任务文件，消息只回传状态、产物位置、主要结论和需要协调的问题。主 agent 核对产物和报告后，由指定维护者更新共同计划。
+State critical exact values and constraints explicitly, and include the corresponding original source material. Do not require the subagent to infer them from the entire chat. For long materials, provide file paths and relevant sections; supply only the context needed for the current task.
 
-## 接收、修复与调度
+## File and Resource Coordination
 
-收到成果后先检查范围和文件归属，再核对交接要求、验收条目与证据。将制作者的自查与集成后的验证区分开：可沿用相同版本上的可靠证据；集成改变内容或行为后复查受影响部分。
+- Each writable file has one owner within a given stage. Explicitly assign an owner for main text, shared entry points, configuration, or other files that multiple roles need to change; other workers submit change requests.
+- A dedicated document maintainer may update shared documents. The primary agent supplies decisions, task states, and confirmed acceptance conclusions; the maintainer synchronizes the records and reports conflicts or gaps. If the primary agent needs to edit the same file directly, complete a handoff of write ownership first.
+- Before changing shared agreements, have the primary agent confirm the change, then have the designated maintainer update the records and notify affected workers. Update task briefs accordingly, and recheck earlier validation to the extent affected.
+- Separate files alone do not prevent conflicts: dependency installation, generators, database migrations, and shared services also need a designated worker or an isolated environment.
+- Once the project has chosen to use Git, large modules that require isolated development may use a suitable existing or newly created worktree. Record its actual path, baseline, and commits awaiting integration; creating a worktree does not mean that uncommitted content has been copied.
+- In a shared checkout that uses Git, the primary agent manages the index. After workers hand off their deliverables, the primary agent reviews and integrates them and creates version checkpoints; tasks that do not use Git hand off file versions as agreed.
+- If a need outside the assigned scope emerges during execution, report its impact and a recommendation to the primary agent; transfer ownership only after the original file owner confirms that they have stopped writing.
 
-返修任务提供具体问题、复现条件、预期行为及可写范围。优先让熟悉该任务的执行者修复；需要重派时交接现有成果并结束原写入权。
+## Report Template
 
-同一失败反复出现时，检查输入、接口或任务边界是否错误，改计划后再派工。遇到必须由用户提供的资料或授权时，说明准确缺口，同时推进其他任务。
+```text
+Task ID:
+Status: ready for review / needs input / blocked
+Deliverables and files actually changed:
+Corresponding acceptance criteria:
+Version of the item checked, method used, and results:
+Evidence locations:
+Unresolved issues, impact, and recommendations:
+Handoff information or local commits, if any:
+```
+
+Write long reports to the task file designated by the primary agent; return only the status, deliverable locations, main conclusions, and issues that need coordination in the message. After the primary agent checks the deliverables and report, the designated maintainer updates the shared plan.
+
+## Intake, Repairs, and Scheduling
+
+When receiving deliverables, first check scope and file ownership, then check handoff requirements, acceptance criteria, and evidence. Distinguish the creator's own checks from validation after integration: reliable evidence for the same version may be reused; if integration changes content or behavior, recheck the affected parts.
+
+For repair tasks, provide specific issues, reproduction conditions, expected behavior, and writable scope. Prefer repairs by the worker already familiar with the task; if reassignment is necessary, hand off the existing work and end the previous worker's write ownership.
+
+When the same failure recurs, check whether inputs, interfaces, or task boundaries are wrong, revise the plan, and then delegate again. When information or authorization must come from the user, state the exact gap while continuing other tasks.
